@@ -6,8 +6,9 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { BuscaComponent } from './componentes/busca/busca.component';
 import { TabelaComponent } from './componentes/tabela/tabela.component';
 import { ModalComponent } from './componentes/modal/modal.component';
-import { BackdropComponent } from './componentes/modal/backdrop/backdrop.component';
 import { LinhaTabelaComponent } from './componentes/tabela/linha-tabela/linha-tabela.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +17,12 @@ import { LinhaTabelaComponent } from './componentes/tabela/linha-tabela/linha-ta
     BuscaComponent,
     TabelaComponent,
     ModalComponent,
-    BackdropComponent,
     LinhaTabelaComponent,
+    HomeComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

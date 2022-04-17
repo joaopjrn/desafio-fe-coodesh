@@ -1,51 +1,52 @@
-<div *ngIf="open" [class]="classes" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" style="display: block;" role="dialog">
-<!-- <div *ngIf="open" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header position-relative">
-        <img class="img-fluid rounded-circle shadow" src="https://randomuser.me/api/portraits/women/43.jpg" alt="">
-        <h4>Marielle Grønlie</h4>
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-      </div>
-      <div class="modal-body fs-5">
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-at"></i></div>
-          <div class="col-auto">marielle.gronlie@example.com</div>
+<div>
+  <div class="modal show" id="exampleModal" tabindex="-1" style="display: block;" role="dialog">
+    <!-- <div *ngIf="open" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header position-relative">
+          <img class="img-fluid rounded-circle shadow" src="https://randomuser.me/api/portraits/women/43.jpg" alt="">
+          <h4>Marielle Grønlie</h4>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-mars-and-venus"></i></div>
-          <div class="col-auto">female</div>
+        <div class="modal-body fs-5">
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-at"></i></div>
+            <div class="col-auto">marielle.gronlie@example.com</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-mars-and-venus"></i></div>
+            <div class="col-auto">female</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-cake-candles"></i></div>
+            <div class="col-auto">27/03/1945</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-mobile-button"></i></div>
+            <div class="col-auto">40561212</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-earth-americas"></i></div>
+            <div class="col-auto">Norway</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="col-auto">Bjerkelia, Vinstra, 4234</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-id-card"></i></div>
+            <div class="col-auto">FN - 27034522877</div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto mx-4"><i class="fa-solid fa-share-nodes"></i></div>
+            <div class="col-auto">FN - 27034522877</div>
+          </div>
         </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-cake-candles"></i></div>
-          <div class="col-auto">27/03/1945</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="closeModal">Close</button>
         </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-mobile-button"></i></div>
-          <div class="col-auto">40561212</div>
-        </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-earth-americas"></i></div>
-          <div class="col-auto">Norway</div>
-        </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-location-dot"></i></div>
-          <div class="col-auto">Bjerkelia, Vinstra, 4234</div>
-        </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-id-card"></i></div>
-          <div class="col-auto">FN - 27034522877</div>
-        </div>
-        <div class="row justify-content-start">
-          <div class="col-auto mx-4"><i class="fa-solid fa-share-nodes"></i></div>
-          <div class="col-auto">FN - 27034522877</div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="toggleModal()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
+  <div class="modal-backdrop fade show" tabindex="1"></div>
 </div>
-<app-backdrop *ngIf="open"></app-backdrop>

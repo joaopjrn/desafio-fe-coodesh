@@ -15,6 +15,14 @@ export class TabelaComponent implements OnInit {
     {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
     {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
     {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
+    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
   ];
   constructor() { }
 
