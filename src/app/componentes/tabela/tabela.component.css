@@ -1,0 +1,11 @@
+tr th:last-child {
+  width: 10%;
+}
+
+tr td>button {
+  width: 100%;
+}
+
+tr {
+  vertical-align: middle;
+}

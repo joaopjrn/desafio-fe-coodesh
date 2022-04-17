@@ -1,0 +1,16 @@
+.modal-header {
+  display: flex;
+  justify-content: center;
+  padding-top: 72px;
+}
+
+.modal-header img{
+  max-width: 40%;
+  position: absolute;
+  justify-self: center;
+  top: -65px;
+}
+
+.modal-body .row div:first-child {
+  width: 20px;
+}

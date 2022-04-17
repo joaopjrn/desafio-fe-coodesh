@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+div[class*="col"]{
+  padding: 0;
+}
+
+.pp {
+  max-width: 50px;
+}
+
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+
+}
+@media (min-width: 888px) {
+  .topo {
+    height: 68px;
+  }
+}
+@media (min-width: 1300px) {
+  .topo {
+    height: 68px;
+  }
+}
