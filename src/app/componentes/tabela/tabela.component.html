@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr app-linha-tabela *ngFor="let paciente of pacientes" 
+      <tr app-linha-tabela *ngFor="let paciente of (patients | async).patients" 
       [name]="paciente.name" [gender]="paciente.gender" [dob]="paciente.dob"></tr>
       <tr class="col">
         <td colspan="4">

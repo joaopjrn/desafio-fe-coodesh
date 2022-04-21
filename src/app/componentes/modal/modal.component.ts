@@ -16,10 +16,9 @@ export class ModalComponent implements OnInit {
   
   @HostListener('click', ['$event.target'])
   onClick(target: HTMLElement) {
-    // if(target.id == "exampleModal" || target.id == 'closeModal'){
-    //   this.router.navigate(['/']);
-    // }
-    console.log(target);
+    if(target.id == "modalBackdrop" || target.id == 'closeModal'){
+      this.router.navigate(['/']);
+    }
   }
 
 

@@ -10,6 +10,9 @@ import { LinhaTabelaComponent } from './componentes/tabela/linha-tabela/linha-ta
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './componentes/home/home.component';
 
+import { StoreModule } from '@ngrx/store';
+import { patientReducer } from './ngrx/patient.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,8 @@ import { HomeComponent } from './componentes/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({patientsStore: patientReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

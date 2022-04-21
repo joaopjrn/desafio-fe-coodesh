@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: '[app-tabela]',
@@ -6,27 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabela.component.css']
 })
 export class TabelaComponent implements OnInit {
-  pacientes = [
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-    {name: "Mark", gender: "male", dob: "24/05/1975", id: "123456"},
-  ];
-  constructor() { }
+  patients: Observable<{ patients: { name: string; gender: string; dob: string; id: string; }[];
+  }>;
+
+  constructor(
+    private store: Store<{ patientsStore: { patients: { name: string, gender: string, dob: string, id: string }[] } }>
+  ) { }
+
 
   ngOnInit(): void {
+    this.patients = this.store.select('patientsStore');
   }
 
 }
