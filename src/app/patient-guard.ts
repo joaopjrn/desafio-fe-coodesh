@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class PatientGuard implements CanActivate, CanActivateChild {
-  constructor() { }
+  constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if(!route.params['page'] || +route.params['page'] < 1){
+      this.router.navigate([1]);
+      return false;
+    }
     return true;
   }
 

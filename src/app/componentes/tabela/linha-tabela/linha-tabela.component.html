@@ -1,4 +1,4 @@
-<td>{{name}}</td>
-<td>{{gender}}</td>
-<td>{{dob}}</td>
-<td><button type="button" class="btn btn-outline-info" [routerLink]="['patient', 1]">View</button></td>
+<td class="text-start" style="width: 55%;">{{patient.name}}</td>
+<td>{{patient.gender}}</td>
+<td>{{patient.dob.date.toLocaleDateString()}}</td>
+<td><button type="button" class="btn btn-outline-info" (click)="viewPatientInfo(patient.id)">View</button></td>

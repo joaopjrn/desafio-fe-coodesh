@@ -1,10 +1,15 @@
-  <table class="table table-striped text-center">
+<div class="d-flex justify-content-center w-100" style="height: 100px;" *ngIf="isLoading">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+  <table class="table table-striped text-center" *ngIf="!isLoading">
     <thead>
       <tr>
         <th scope="col">
-          <div class="row justify-content-center">
-            <div class="col-auto me-2">Name</div>
-            <div class="col-auto"><i class="fa-solid fa-arrow-down-a-z"></i></div>
+          <div class="row">
+            <div class="col-auto ms-3 me-3">Name</div>
+            <div class="col-auto" style="cursor: pointer;"><i class="fa-solid fa-arrow-down-a-z"></i></div>
           </div>
         </th>
         <th scope="col">Gender</th>
@@ -13,20 +18,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr app-linha-tabela *ngFor="let paciente of (patients | async).patients" 
-      [name]="paciente.name" [gender]="paciente.gender" [dob]="paciente.dob"></tr>
+      <tr app-linha-tabela *ngFor="let patient of patients" [patient]="patient"></tr>
       <tr class="col">
         <td colspan="4">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-0">
-              <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <nav>
+            <ul class="pagination justify-content-center mb-0 user-select-none">
               <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+                <a class="page-link" (click)="prevPage()" style="cursor: pointer;"><i class="fa-solid fa-arrow-left-long"></i></a>
+              </li>
+              <li class="page-item"><a class="page-link">{{page}}</a></li>
+              <li class="page-item">
+                <a class="page-link" (click)="nextPage()" style="cursor: pointer;"><i class="fa-solid fa-arrow-right-long"></i></a>
               </li>
             </ul>
           </nav>
@@ -34,3 +36,4 @@
       </tr>
     </tbody>
   </table>
+  <router-outlet></router-outlet>
