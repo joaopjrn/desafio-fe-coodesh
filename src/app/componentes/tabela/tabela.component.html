@@ -9,7 +9,9 @@
         <th scope="col">
           <div class="row">
             <div class="col-auto ms-3 me-3">Name</div>
-            <div class="col-auto" style="cursor: pointer;"><i class="fa-solid fa-arrow-down-a-z"></i></div>
+            <div class="col-auto" style="cursor: pointer;" (click)="switchSortOrder()">
+              <i class="fa-solid fa-sort"></i>
+            </div>
           </div>
         </th>
         <th scope="col">Gender</th>
@@ -19,14 +21,14 @@
     </thead>
     <tbody>
       <tr app-linha-tabela *ngFor="let patient of patients" [patient]="patient"></tr>
-      <tr class="col">
+      <tr class="col" *ngIf="!filtersApplied()">
         <td colspan="4">
           <nav>
             <ul class="pagination justify-content-center mb-0 user-select-none">
               <li class="page-item">
                 <a class="page-link" (click)="prevPage()" style="cursor: pointer;"><i class="fa-solid fa-arrow-left-long"></i></a>
               </li>
-              <li class="page-item"><a class="page-link">{{page}}</a></li>
+              <li class="page-item"><a class="page-link">{{getPage()}}</a></li>
               <li class="page-item">
                 <a class="page-link" (click)="nextPage()" style="cursor: pointer;"><i class="fa-solid fa-arrow-right-long"></i></a>
               </li>

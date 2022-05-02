@@ -7,7 +7,7 @@ import { PatientGuard } from "./patient-guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '1', pathMatch: 'full' },
-  { path: ':page', component: TabelaComponent, canActivate: [PatientGuard], children: [
+  { path: ':page', component: TabelaComponent, canActivateChild: [PatientGuard], children: [
     { path: 'patient/:id', component: ModalComponent}
   ] }
 ];

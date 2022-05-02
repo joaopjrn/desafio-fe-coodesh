@@ -1,4 +1,4 @@
-<td class="text-start" style="width: 55%;">{{patient.name}}</td>
-<td>{{patient.gender}}</td>
+<td class="text-start" style="">{{patient.name}}</td>
+<td>{{patient.gender == 2 ? "Male" : "Female"}}</td>
 <td>{{patient.dob.date.toLocaleDateString()}}</td>
 <td><button type="button" class="btn btn-outline-info" (click)="viewPatientInfo(patient.id)">View</button></td>

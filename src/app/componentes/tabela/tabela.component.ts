@@ -14,10 +14,10 @@ export class TabelaComponent implements OnInit {
   // patients: Observable<{ patients: { name: string; gender: string; dob: string; id: string; }[];}>;
   isLoading: boolean = true;
   patients: Patient[];
-  pageSize: number = 10;
   page: number;
   patientsListener: Subscription;
   isLoadingListener: Subscription;
+  order: number = 0;
 
   constructor(
     private store: Store<{ appStore: { patients: { name: string, gender: string, dob: string, id: string }[] } }>,
@@ -30,16 +30,15 @@ export class TabelaComponent implements OnInit {
   ngOnInit(): void {
     // this.patients = this.store.select('appStore');
     this.isLoading = true;
-    this.page = +this.route.snapshot.params['page'];
+    this.appSvc.setTablePage(+this.route.snapshot.params['page']);
     this.patientsListener = this.appSvc.getSubPatients().subscribe(res => {
       if (res) {
         this.patients = this.appSvc.getPatientsPage();
-        // console.log(this.patients);
       }
     });
 
-    this.appSvc.getPatients(+this.route.snapshot.params['page'], this.pageSize);
-    
+    this.appSvc.getPatients();
+
     this.isLoadingListener = this.appSvc.getSubIsLoading().subscribe(res => {
       this.isLoading = res;
     });
@@ -47,16 +46,28 @@ export class TabelaComponent implements OnInit {
   }
 
   nextPage() {
-    this.page = +this.route.snapshot.params['page'] + 1;
-    this.router.navigate([this.page]);
-    this.appSvc.getPatients(this.page, this.pageSize, 'fwd');
+    this.appSvc.setTablePage(+this.route.snapshot.params['page'] + 1);
+    this.router.navigate([this.appSvc.getTablePage()]);
+    this.appSvc.getPatients('fwd');
   }
   prevPage() {
-    if(this.page > 1){
-      this.page = +this.route.snapshot.params['page'] - 1;
-      this.router.navigate([this.page]);
-      this.appSvc.getPatients(this.page, this.pageSize, 'bwd');
+    if (this.appSvc.getTablePage() > 1) {
+      this.appSvc.setTablePage(+this.route.snapshot.params['page'] - 1);
+      this.router.navigate([this.appSvc.getTablePage()]);
+      this.appSvc.getPatients('bwd');
     }
+  }
+
+  switchSortOrder() {
+    this.appSvc.switchSortOrder();
+  }
+
+  getPage(){
+    return this.appSvc.getTablePage();
+  }
+
+  filtersApplied(){
+    return this.appSvc.filtersApplied();
   }
 
 }

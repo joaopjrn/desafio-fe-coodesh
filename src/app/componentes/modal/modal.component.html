@@ -1,10 +1,16 @@
 <div class="modal-container">
-  <div class="myModal">
+  <div class="d-flex justify-content-center w-100" style="height: 100px;" *ngIf="isLoading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="myModal" *ngIf="!isLoading">
     <div class="modal-header position-relative">
       <div class="d-flex header-pos">
         <img class="img-fluid rounded-circle shadow" [src]="patient.pictureUrl" alt="">
         <h4 class="mt-2">{{patient.name}}</h4>
       </div>
+      <i id="closeModal" class="fa-solid fa-xmark" style="position: absolute;right: 0;top: 0;"></i>
       <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
     </div>
     <div class="modal-body fs-5">
@@ -14,7 +20,7 @@
       </div>
       <div class="row justify-content-start">
         <div class="col-auto mx-4"><i class="fa-solid fa-mars-and-venus"></i></div>
-        <div class="col-auto">{{patient.gender}}</div>
+        <div class="col-auto">{{patient.gender == 2 ? "Male" : "Female"}}</div>
       </div>
       <div class="row justify-content-start">
         <div class="col-auto mx-4"><i class="fa-solid fa-cake-candles"></i></div>
@@ -40,9 +46,6 @@
         <div class="col-auto mx-4"><i class="fa-solid fa-share-nodes"></i></div>
         <div class="col-auto">{{patient.url}}</div>
       </div>
-    </div>
-    <div class="modal-footer pb-0">
-      <button type="button" class="btn btn-primary" id="closeModal">Close</button>
     </div>
   </div>
   <div id="modalBackdrop" class="modal-backdrop show" tabindex="1"></div>
