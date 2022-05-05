@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { appReducer } from './ngrx/app.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ModalAlertComponent } from './componentes/modal/modal-alert/modal-alert.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     TabelaComponent,
     ModalComponent,
     LinhaTabelaComponent,
+    ModalAlertComponent,
   ],
   imports: [
     BrowserModule,

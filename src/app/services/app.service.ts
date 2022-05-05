@@ -75,7 +75,7 @@ export class AppService {
             country: item.location.country,
             address: `${item.location.street.name}, ${item.location.street.number} - ${item.location.city} / ${item.location.state}`,
             id: item.login.uuid,
-            url: ''
+            url: window.location.origin + "/" + this.tablePage + "/patient/" + item.login.uuid
           }
         }));
         console.log(this.patients);

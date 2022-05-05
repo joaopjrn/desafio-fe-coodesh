@@ -8,7 +8,9 @@
     <div class="modal-header position-relative">
       <div class="d-flex header-pos">
         <img class="img-fluid rounded-circle shadow" [src]="patient.pictureUrl" alt="">
-        <h4 class="mt-2">{{patient.name}}</h4>
+        <h4 class="mt-2">
+          <i class="fa-solid fa-person{{patient.gender == 2 ? '' : '-dress'}}"></i>&nbsp;
+          {{patient.name}}</h4>
       </div>
       <i id="closeModal" class="fa-solid fa-xmark" style="position: absolute;right: 0;top: 0;"></i>
       <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
@@ -39,14 +41,15 @@
         <div class="col-auto">{{patient.address}}</div>
       </div>
       <div class="row justify-content-start">
-        <div class="col-auto mx-4"><i class="fa-solid fa-id-card"></i></div>
+        <div class="col-auto mx-4"><i class="fa-solid fa-barcode"></i></div>
         <div class="col-auto">{{patient.id}}</div>
       </div>
       <div class="row justify-content-start">
         <div class="col-auto mx-4"><i class="fa-solid fa-share-nodes"></i></div>
-        <div class="col-auto">{{patient.url}}</div>
+        <div class="col-auto text-info" style="cursor: pointer;" (click)="copyLink()">Copy patient link!</div>
       </div>
     </div>
+    <app-modal-alert *ngIf="showAlert" class="{{showAlert ? 'showAlert' : ''}}"></app-modal-alert>
   </div>
   <div id="modalBackdrop" class="modal-backdrop show" tabindex="1"></div>
 </div>

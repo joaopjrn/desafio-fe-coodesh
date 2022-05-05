@@ -1,0 +1,7 @@
+div[role="alert"]{
+  position: absolute;
+  bottom: 0px;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+}

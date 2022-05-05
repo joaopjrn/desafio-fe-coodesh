@@ -14,6 +14,7 @@ export class ModalComponent implements OnInit {
 
   patientsListener: Subscription;
   isLoading: boolean = true;
+  showAlert: boolean = false;
   
   constructor(private router: Router, private route: ActivatedRoute, private appSvc: AppService, private location: Location) { }
 
@@ -38,6 +39,14 @@ export class ModalComponent implements OnInit {
       // this.location.back();
       this.router.navigate(["../.."], {relativeTo: this.route});
     }
+  }
+
+  copyLink(){
+    navigator.clipboard.writeText(this.patient.url);
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 2000);
   }
 
 
