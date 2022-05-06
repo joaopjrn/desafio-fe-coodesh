@@ -1,9 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Patient } from 'src/app/modelos/Patient';
 import { AppService } from 'src/app/services/app.service';
+import {map} from 'rxjs/operators';
+
+//NGRX
 
 @Component({
   selector: 'app-modal',

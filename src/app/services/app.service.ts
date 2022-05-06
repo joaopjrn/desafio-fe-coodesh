@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { filter, Subject } from 'rxjs';
-import { Gender, SortOrder } from '../modelos/myEnums';
+import { Subject } from 'rxjs';
+import { Direction, Gender, SortOrder } from '../modelos/myEnums';
 import { filterPatients, Patient } from '../modelos/Patient';
 import { SearchFilters } from '../modelos/SearchFilters';
-import * as fromApp from '../ngrx/app.reducer';
+
+//NGRX
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor(private store: Store<{ appStore: fromApp.State }>, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   private patients: Patient[] = [];
   private patientsLoaded: boolean = false;
@@ -37,7 +37,7 @@ export class AppService {
   // ██      ██   ██    ██    ██ ██      ██  ██ ██    ██         ██ 
   // ██      ██   ██    ██    ██ ███████ ██   ████    ██    ███████
 
-  getPatients(direction: (string | null) = null) {
+  getPatients(direction: Direction = Direction.Default) {
     let getFromApi = false;
     let apiPage: number = Math.ceil((this.tablePage * this.pageSize) / 50);
     console.log(apiPage);
@@ -90,26 +90,17 @@ export class AppService {
   }
 
   getPatient(id: string) {
-    let selectedPatient: Patient;
-    this.patients.some(patient => {
-      if (patient.id === id) {
-        selectedPatient = patient;
-        return true;
-      }
-      return false;
-    });
-    return selectedPatient;
+    return <Patient>{...this.patients.find(patient => patient.id === id)};
   }
 
-  setPatients(direction: string, newPatients: Patient[]) {
-    if (!direction) {
-      console.log('sem dir')
+  setPatients(direction: Direction, newPatients: Patient[]) {
+    if (direction === Direction.Default) {
       this.patients = [...newPatients];
       this.filteringPatients = [...this.patients];
-    } else if (direction === 'fwd') {
+    } else if (direction === Direction.Forward) {
       this.patients = [...this.patients, ...newPatients];
       this.filteringPatients = [...this.patients];
-    } else if (direction === 'bwd') {
+    } else if (direction === Direction.Backwards) {
       this.patients = [...newPatients, ...this.patients];
       this.filteringPatients = [...this.patients];
     }
@@ -192,8 +183,7 @@ export class AppService {
   filterPatients() {
     this.patients = filterPatients(this.filteringPatients, this.filters);
     console.log(this.patients);
-    if (this.filters.country === '' && this.filters.gender === 0 && this.filters.searchTerm === '') {
-
+    if (this.filters.searchTerm === '' && this.filters.country === '' && this.filters.gender === 0) {
       this.setPatientsPage();
     } else {
       console.log('???')

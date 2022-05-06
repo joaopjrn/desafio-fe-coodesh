@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Patient } from 'src/app/modelos/Patient';
 import { AppService } from 'src/app/services/app.service';
+import { map } from 'rxjs/operators';
+
+//NGRX
+import { Store } from '@ngrx/store';
+import { Direction } from 'src/app/modelos/myEnums';
+
 
 @Component({
   selector: 'app-tabela',
@@ -20,7 +25,6 @@ export class TabelaComponent implements OnInit {
   order: number = 0;
 
   constructor(
-    private store: Store<{ appStore: { patients: { name: string, gender: string, dob: string, id: string }[] } }>,
     private appSvc: AppService,
     private route: ActivatedRoute,
     private router: Router
@@ -48,13 +52,13 @@ export class TabelaComponent implements OnInit {
   nextPage() {
     this.appSvc.setTablePage(+this.route.snapshot.params['page'] + 1);
     this.router.navigate([this.appSvc.getTablePage()]);
-    this.appSvc.getPatients('fwd');
+    this.appSvc.getPatients(Direction.Forward);
   }
   prevPage() {
     if (this.appSvc.getTablePage() > 1) {
       this.appSvc.setTablePage(+this.route.snapshot.params['page'] - 1);
       this.router.navigate([this.appSvc.getTablePage()]);
-      this.appSvc.getPatients('bwd');
+      this.appSvc.getPatients(Direction.Backwards);
     }
   }
 

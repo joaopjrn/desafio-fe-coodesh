@@ -9,3 +9,9 @@ export enum Gender {
   Female,
   Male
 }
+
+export enum Direction {
+  Default,
+  Forward,
+  Backwards
+}
