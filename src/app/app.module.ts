@@ -15,6 +15,10 @@ import { ModalAlertComponent } from './componentes/modal/modal-alert/modal-alert
 
 //NGRX
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ApiEffects } from './ngrx/api/api.effects';
+import { appReducer } from './ngrx/app.reducer';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    // StoreModule.forRoot(),
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([ApiEffects]),
+    StoreRouterConnectingModule.forRoot(),
     HttpClientModule
   ],
   providers: [],

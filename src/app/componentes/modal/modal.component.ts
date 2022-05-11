@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Patient } from 'src/app/modelos/Patient';
 import { AppService } from 'src/app/services/app.service';
@@ -19,21 +19,26 @@ export class ModalComponent implements OnInit {
   isLoading: boolean = true;
   showAlert: boolean = false;
   
-  constructor(private router: Router, private route: ActivatedRoute, private appSvc: AppService, private location: Location) { }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private appSvc: AppService, 
+    private location: Location
+    ) { }
 
   patient: Patient;
   
   ngOnInit(): void {
-    if(this.appSvc.getPatientsLoaded()){
-      this.isLoading = false;
-      this.patient = this.appSvc.getPatient(this.route.snapshot.params['id']);
-    }
-    this.patientsListener = this.appSvc.getSubPatients().subscribe(res => {
-      if(res){
-        this.isLoading = false;
-        this.patient = this.appSvc.getPatient(this.route.snapshot.params['id']);
-      }
-    });
+    // if(this.appSvc.getPatientsLoaded()){
+    //   this.isLoading = false;
+    //   this.patient = this.appSvc.getPatient(this.route.snapshot.params['id']);
+    // }
+    // this.patientsListener = this.appSvc.getSubPatients().subscribe(res => {
+    //   if(res){
+    //     this.isLoading = false;
+    //     this.patient = this.appSvc.getPatient(this.route.snapshot.params['id']);
+    //   }
+    // });
   }
   
   @HostListener('click', ['$event.target'])

@@ -15,7 +15,7 @@ export class PatientGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    console.log(childRoute);
+    console.log('RouterStateSnapshot')
     console.log(state);
     return true;
   }

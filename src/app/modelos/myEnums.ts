@@ -15,3 +15,7 @@ export enum Direction {
   Forward,
   Backwards
 }
+
+export enum Status {
+  Loading, Ok
+}

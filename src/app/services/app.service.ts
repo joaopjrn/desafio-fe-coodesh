@@ -37,60 +37,62 @@ export class AppService {
   // ██      ██   ██    ██    ██ ██      ██  ██ ██    ██         ██ 
   // ██      ██   ██    ██    ██ ███████ ██   ████    ██    ███████
 
-  getPatients(direction: Direction = Direction.Default) {
-    let getFromApi = false;
-    let apiPage: number = Math.ceil((this.tablePage * this.pageSize) / 50);
-    console.log(apiPage);
-    // let apiPage: number = (this.patients.length / 50) + 1;
-    if (this.patients.length < 1) {//no patients locally
-      getFromApi = true;
-      // apiPage = 1;
-    } else {                       //patients locally
-      this.setPatientsPage();
-      if (this.patientsPage.length >= this.pageSize) { //enough local patients
-        getFromApi = false;
-        this.subPatients.next(true);
-      } else {                             //not enough local patients
-        getFromApi = true;
-        // apiPage = (this.patients.length / 50) + 1;
-      }
-    }
-    if (getFromApi) {
-      this.isLoading = true;
-      this.subIsLoading.next(true);
-      this.http.get<{ results: any[] }>(`https://randomuser.me/api/?results=50&page=${apiPage}&seed=coodesh`).subscribe(res => {
-        this.setPatients(direction, res.results.map((item, i) => {
-          if (!this.countries.includes(item.location.country)) {
-            this.countries.push(item.location.country);
-            this.countries.sort((a, b) => a <= b ? -1 : 1);
-          }
-          return <Patient>{
-            apiIndex: i + ((apiPage - 1) * 50),
-            name: `${item.name.first} ${item.name.last}`,
-            pictureUrl: item.picture.large,
-            email: item.email,
-            gender: item.gender === 'female' ? Gender.Female : Gender.Male,
-            dob: { date: new Date(item.dob.date), age: item.dob.age },
-            phone: item.phone,
-            country: item.location.country,
-            address: `${item.location.street.name}, ${item.location.street.number} - ${item.location.city} / ${item.location.state}`,
-            id: item.login.uuid,
-            url: window.location.origin + "/" + this.tablePage + "/patient/" + item.login.uuid
-          }
-        }));
-        console.log(this.patients);
-        console.log(this.countries);
-        this.setPatientsPage();
-        this.patientsLoaded = true;
-        this.subPatients.next(true);
-        this.isLoading = false;
-        this.subIsLoading.next(false);
-      });
-    }
+  // getPatients(direction: Direction = Direction.Default) {
+  getPatients() {
+    return this.http.get<{ results: {}[] }>(`https://randomuser.me/api/?results=50&seed=coodesh`);
+    // let getFromApi = false;
+    // let apiPage: number = Math.ceil((this.tablePage * this.pageSize) / 50);
+    // console.log(apiPage);
+    // // let apiPage: number = (this.patients.length / 50) + 1;
+    // if (this.patients.length < 1) {//no patients locally
+    //   getFromApi = true;
+    //   // apiPage = 1;
+    // } else {                       //patients locally
+    //   this.setPatientsPage();
+    //   if (this.patientsPage.length >= this.pageSize) { //enough local patients
+    //     getFromApi = false;
+    //     this.subPatients.next(true);
+    //   } else {                             //not enough local patients
+    //     getFromApi = true;
+    //     // apiPage = (this.patients.length / 50) + 1;
+    //   }
+    // }
+    // if (getFromApi) {
+    //   this.isLoading = true;
+    //   this.subIsLoading.next(true);
+    //   this.http.get<{ results: any[] }>(`https://randomuser.me/api/?results=50&page=${apiPage}&seed=coodesh`).subscribe(res => {
+    //     this.setPatients(direction, res.results.map((item, i) => {
+    //       if (!this.countries.includes(item.location.country)) {
+    //         this.countries.push(item.location.country);
+    //         this.countries.sort((a, b) => a <= b ? -1 : 1);
+    //       }
+    //       return <Patient>{
+    //         apiIndex: i + ((apiPage - 1) * 50),
+    //         name: `${item.name.first} ${item.name.last}`,
+    //         pictureUrl: item.picture.large,
+    //         email: item.email,
+    //         gender: item.gender === 'female' ? Gender.Female : Gender.Male,
+    //         dob: { date: new Date(item.dob.date), age: item.dob.age },
+    //         phone: item.phone,
+    //         country: item.location.country,
+    //         address: `${item.location.street.name}, ${item.location.street.number} - ${item.location.city} / ${item.location.state}`,
+    //         id: item.login.uuid,
+    //         url: window.location.origin + "/" + this.tablePage + "/patient/" + item.login.uuid
+    //       }
+    //     }));
+    //     console.log(this.patients);
+    //     console.log(this.countries);
+    //     this.setPatientsPage();
+    //     this.patientsLoaded = true;
+    //     this.subPatients.next(true);
+    //     this.isLoading = false;
+    //     this.subIsLoading.next(false);
+    //   });
+    // }
   }
 
   getPatient(id: string) {
-    return <Patient>{...this.patients.find(patient => patient.id === id)};
+    return <Patient>{ ...this.patients.find(patient => patient.id === id) };
   }
 
   setPatients(direction: Direction, newPatients: Patient[]) {
